@@ -6,7 +6,7 @@ The Apache Error Pages project is a drop-in replacement of beautifully designed,
 
 - Fully responsive templates, works across desktop, tablet and mobile phones.
 - Animated text, creating the illusion of an error output on a Terminal console.
-- More than XX templates covering all Apache 2 error statuses.
+- There are 24 templates covering all Apache 2 error statuses. Enjoy!
 - Font Awesome icons used in error messages.
 
 Installation instructions are found below the previews. This shouldn't take you more than 5-10 minutes to implement these crafted, custom-designed Apache error pages.
