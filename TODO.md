@@ -7,8 +7,8 @@
     + [ ] Tablet
     + [ ] Mobile
 - [ ] Look for a minifying option for HTML
-- [ ] Create compression script for `/src/` folder.
-- [ ] Create `/dist/` folder for converted HTML files to live.
+- [x] Create compression script for `/src/` folder.
+- [x] Create `/dist/` folder for converted HTML files to live.
 
 ## Templates to Create
 
