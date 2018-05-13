@@ -1,3 +1,2 @@
 # Prevent Git from checking in these files in this folder.
-*
 !.gitignore
