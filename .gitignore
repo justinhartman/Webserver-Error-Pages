@@ -1,2 +1,5 @@
 # Sublime
 *.sublime-workspace
+
+# Docs folder
+docs/
