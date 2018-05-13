@@ -2,10 +2,10 @@
 
 ## Main Template
 
-- [ ] Create breakpoints in CSS for:
-    + [ ] Desktop
-    + [ ] Tablet
-    + [ ] Mobile
+- Create breakpoints in CSS for:
+    + [x] Desktop
+    + [x] Tablet
+    + [x] Mobile
 - [ ] Look for a minifying option for HTML
 - [x] Create compression script for `/src/` folder.
 - [x] Create `/dist/` folder for converted HTML files to live.
