@@ -3,3 +3,7 @@
 
 # Docs folder
 docs/
+
+# Node packages. Not sure if this even helps.
+package.json
+package-lock.json

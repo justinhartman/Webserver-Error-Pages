@@ -1,0 +1,25 @@
+#!/bin/bash
+rm -rf ../dist/css
+rm -f ../dist/*.html
+mkdir ../dist/css
+echo "../dist folder reset"
+
+for VARIABLE in 400 401 403 404 405 406 407 408 411 413 414 415 420 429 431 500 501 502 503 504 505 900 901 902
+do
+    HTML_FILE_NAME="$VARIABLE.html"
+    html-minifier --collapse-whitespace --remove-comments --remove-optional-tags --remove-redundant-attributes --remove-script-type-attributes --remove-tag-whitespace --use-short-doctype ../src/$HTML_FILE_NAME -o ../dist/$HTML_FILE_NAME
+    echo "$HTML_FILE_NAME minified"
+done
+
+for VARIABLE in breakpoints.css fontawesome-all.css google-fonts.css main.css
+do
+    CSS_FILE_NAME="$VARIABLE"
+    postcss ../src/css/$CSS_FILE_NAME > ../dist/css/$CSS_FILE_NAME
+    echo "$CSS_FILE_NAME minified"
+done
+
+# JS_FILE_NAME="<your file name"
+# uglifyjs --compress --mangle -o ../dist/$JS_FILE_NAME -- $JS_FILE_NAME
+# echo "$JS_FILE_NAME minified"
+
+echo "Minification complete!"

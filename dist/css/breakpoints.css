@@ -1,0 +1,32 @@
+/* Responsive Breakpoints for the Error pages. */
+@media only all and (min-width:48rem) and (max-width:59.938rem) {
+    body{
+        width: 135%;
+    }
+    #echoerror {
+        width: 530px;
+        top: 9%;
+        left: 17%;
+    }
+}@media only all and (min-width:38rem) and (max-width:47.938rem) {
+    body{
+        width: 135%;
+    }
+    #echoerror {
+        width: 425px;
+        top: 12%;
+        left: 17%;
+    }
+}@media only all and (max-width:37.938rem) {
+    body{
+        background-position: left 30px;
+        width: 700px;
+    }
+    #echoerror {
+        width: 330px;
+        top: 9%;
+        left: 5%;
+    }
+}
+
+/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uL3NyYy9jc3MvYnJlYWtwb2ludHMuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBLGlEQUFpRDtBQUNqRDtJQUNJO1FBQ0ksWUFBWTtLQUNmO0lBQ0Q7UUFDSSxhQUFhO1FBQ2IsUUFBUTtRQUNSLFVBQVU7S0FDYjtDQUNKO0lBQ0c7UUFDSSxZQUFZO0tBQ2Y7SUFDRDtRQUNJLGFBQWE7UUFDYixTQUFTO1FBQ1QsVUFBVTtLQUNiO0NBQ0o7SUFDRztRQUNJLCtCQUErQjtRQUMvQixhQUFhO0tBQ2hCO0lBQ0Q7UUFDSSxhQUFhO1FBQ2IsUUFBUTtRQUNSLFNBQVM7S0FDWjtDQUNKIiwiZmlsZSI6Ii4uL3NyYy9jc3MvYnJlYWtwb2ludHMuY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLyogUmVzcG9uc2l2ZSBCcmVha3BvaW50cyBmb3IgdGhlIEVycm9yIHBhZ2VzLiAqL1xuQG1lZGlhIG9ubHkgYWxsIGFuZCAobWluLXdpZHRoOjQ4cmVtKSBhbmQgKG1heC13aWR0aDo1OS45MzhyZW0pIHtcbiAgICBib2R5e1xuICAgICAgICB3aWR0aDogMTM1JTtcbiAgICB9XG4gICAgI2VjaG9lcnJvciB7XG4gICAgICAgIHdpZHRoOiA1MzBweDtcbiAgICAgICAgdG9wOiA5JTtcbiAgICAgICAgbGVmdDogMTclO1xuICAgIH1cbn1AbWVkaWEgb25seSBhbGwgYW5kIChtaW4td2lkdGg6MzhyZW0pIGFuZCAobWF4LXdpZHRoOjQ3LjkzOHJlbSkge1xuICAgIGJvZHl7XG4gICAgICAgIHdpZHRoOiAxMzUlO1xuICAgIH1cbiAgICAjZWNob2Vycm9yIHtcbiAgICAgICAgd2lkdGg6IDQyNXB4O1xuICAgICAgICB0b3A6IDEyJTtcbiAgICAgICAgbGVmdDogMTclO1xuICAgIH1cbn1AbWVkaWEgb25seSBhbGwgYW5kIChtYXgtd2lkdGg6MzcuOTM4cmVtKSB7XG4gICAgYm9keXtcbiAgICAgICAgYmFja2dyb3VuZC1wb3NpdGlvbjogbGVmdCAzMHB4O1xuICAgICAgICB3aWR0aDogNzAwcHg7XG4gICAgfVxuICAgICNlY2hvZXJyb3Ige1xuICAgICAgICB3aWR0aDogMzMwcHg7XG4gICAgICAgIHRvcDogOSU7XG4gICAgICAgIGxlZnQ6IDUlO1xuICAgIH1cbn1cbiJdfQ== */
