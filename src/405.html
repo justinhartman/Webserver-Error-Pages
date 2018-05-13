@@ -3,7 +3,7 @@
 <head>
     <!-- Apache Error Pages | AGPL License | https://github.com/justinhartman/Apache-Error-Pages -->
     <meta charset="utf-8">
-    <title>404 - Resource not found</title>
+    <title>405 - Method Not Allowed</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="css/fontawesome-all.css">
@@ -19,14 +19,15 @@
             <i class="fas fa-exclamation-triangle orange"></i>
             <i class="fas fa-times-circle red"></i>
          -->
-        <div id="echoerror"><i class="fas fa-times-circle red"></i></div>
+        <div id="echoerror"><i class="fas fa-exclamation-circle red"></i></div>
     </div>
     <div id="errormsg">
-        :~$ Error 404!<br>
-        Resource not found<br>
+        :~$ Error 405!<br>
+        Method Not Allowed<br>
         <br>
-        The requested resource could not be found but may be available again in the future.
+        A request method is not supported for the requested resource; for example, a GET request on a form that requires data to be presented via POST, or a PUT request on a read-only resource.
     </div>
+    <!-- A request method is not supported for the requested resource; for example, a GET request on a form that requires data to be presented via POST, or a PUT request on a read-only resource. -->
     <script type="text/javascript">
         var charIndex = -1;
         var stringLength = 0;

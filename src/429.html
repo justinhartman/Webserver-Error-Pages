@@ -3,7 +3,7 @@
 <head>
     <!-- Apache Error Pages | AGPL License | https://github.com/justinhartman/Apache-Error-Pages -->
     <meta charset="utf-8">
-    <title>404 - Resource not found</title>
+    <title>429 - Too Many Requests</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="css/fontawesome-all.css">
@@ -19,13 +19,13 @@
             <i class="fas fa-exclamation-triangle orange"></i>
             <i class="fas fa-times-circle red"></i>
          -->
-        <div id="echoerror"><i class="fas fa-times-circle red"></i></div>
+        <div id="echoerror"><i class="fas fa-exclamation-triangle orange"></i></div>
     </div>
     <div id="errormsg">
-        :~$ Error 404!<br>
-        Resource not found<br>
+        :~$ Error 429!<br>
+        Too Many Requests<br>
         <br>
-        The requested resource could not be found but may be available again in the future.
+        The user has sent too many requests in a given amount of time. Intended for use with rate-limiting schemes.
     </div>
     <script type="text/javascript">
         var charIndex = -1;
