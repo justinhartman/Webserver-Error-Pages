@@ -1,25 +1,75 @@
 # Apache Error Pages Replacement
 
-The Apache Error Pages project is a drop-in replacement of beautifully designed, user-friendly Apache 2 error pages. If you're tired of having _boring_ Apache error pages displayed to users then these might just be the solution for you.
+These Apache Error Pages project is a drop-in replacement of beautifully designed, user-friendly Apache 2 error pages. If you're tired of having _boring_ Apache error pages displayed to users then these might just be the solution for you.
+
+<!-- @import "[TOC]" {cmd="toc" depthFrom=2 depthTo=6 orderedList=false} -->
+
+<!-- code_chunk_output -->
+
+* [Features](#features)
+* [Preview](#preview)
+	* [Error Page Example](#error-page-example)
+	* [Responsive Design](#responsive-design)
+		* [Desktop](#desktop)
+		* [Tablet](#tablet)
+		* [Smartphone](#smartphone)
+		* [Smartphone (older-generation)](#smartphone-older-generation)
+* [Installation](#installation)
+	* [Copying the Error Pages](#copying-the-error-pages)
+	* [Modifying your Apache Config file](#modifying-your-apache-config-file)
+* [Minification Setup](#minification-setup)
+	* [Dependencies](#dependencies)
+		* [Installing html-minifier](#installing-html-minifier)
+		* [Installing postcss](#installing-postcss)
+	* [Running the minify script](#running-the-minify-script)
+* [Contributing](#contributing)
+* [Code of Conduct](#code-of-conduct)
+* [Versioning](#versioning)
+* [Change-Log](#change-log)
+* [Authors](#authors)
+* [TODO](#todo)
+* [License](#license)
+* [Acknowledgements](#acknowledgements)
+
+<!-- /code_chunk_output -->
+
 ## Features
 
 * Fully responsive templates, works across desktop, tablet and mobile phones.
 * Animated text, creating the illusion of an error output on a Terminal console.
-* There are 24 templates covering all Apache 2 (as well as other webserver) error statuses. Enjoy!
-* Each template, as well as corresponding CSS file, has been minified for smallest file usage possible.
+* There are 27 templates, 20 exclusively for Apache with an additional 7 for other web-servers. Enjoy!
+* Each template, as well as all CSS files, have been minified to ensure the smallest file usage possible.
 * Font Awesome icons used in error messages.
 
-Installation instructions are found below the previews. This shouldn't take you more than 5-10 minutes to implement these crafted, custom-designed Apache error pages.
+[Installation instructions](#installation) are found below the previews. This shouldn't take you more than **5 minutes** to implement these hand-crafted, custom-designed Apache error pages.
 
 ## Preview
 
-### 404 Error Page
+### Error Page Example
 
 ![404 Error Page][404-template]
 
+### Responsive Design
+
+#### Desktop
+
+![Desktop Version][preview1]
+
+#### Tablet
+
+![Tablet Version][preview2]
+
+#### Smartphone
+
+![iOS and Android Version][preview3]
+
+#### Smartphone (older-generation)
+
+![Older Generation Smartphone Version][preview4]
+
 ## Installation
 
-Installing the drop-in replacement for Apache 2 error pages comes in two parts. You will need to copy all the files contained within the `/dist/` folder to a location on your server. Secondly, you will need to edit your `apache.conf` or `httpd.conf` file to link the error pages to your server.
+Installing the drop-in replacement for Apache 2 error pages comes in two parts. First, you need to copy all the files contained within the `/dist/` folder to a location on your server. Second, you need to edit your `apache.conf` or `httpd.conf` file to link the error pages to your server installation.
 
 ### Copying the Error Pages
 
@@ -30,7 +80,7 @@ Do not replace the default error pages with this project's files. Instead, insta
 ```bash
 $ cd Apache-Error-Pages/
 $ cp -R dist/ /usr/local/var/www/error-pages
-$ chown -R www:apache /usr/local/var/www/error-pages # see note below. 
+$ chown -R www:apache /usr/local/var/www/error-pages # see note below.
 ```
 
 **NB: _Ensure that you replace `www` and `apache`, in the `chown` command above, with your web-server's default user and group._**
@@ -190,10 +240,22 @@ ErrorDocument 400 /ErrorPages/400.html
 ErrorDocument 401 /ErrorPages/401.html
 ErrorDocument 403 /ErrorPages/403.html
 ErrorDocument 404 /ErrorPages/404.html
+ErrorDocument 405 /ErrorPages/405.html
+ErrorDocument 406 /ErrorPages/406.html
+ErrorDocument 407 /ErrorPages/407.html
+ErrorDocument 408 /ErrorPages/408.html
+ErrorDocument 411 /ErrorPages/411.html
+ErrorDocument 413 /ErrorPages/413.html
+ErrorDocument 414 /ErrorPages/414.html
+ErrorDocument 415 /ErrorPages/415.html
+ErrorDocument 429 /ErrorPages/429.html
+ErrorDocument 431 /ErrorPages/431.html
 ErrorDocument 500 /ErrorPages/500.html
 ErrorDocument 501 /ErrorPages/501.html
 ErrorDocument 502 /ErrorPages/502.html
 ErrorDocument 503 /ErrorPages/503.html
+ErrorDocument 504 /ErrorPages/504.html
+ErrorDocument 505 /ErrorPages/505.html
 ```
 
 Save your file and then test your configuration changes by executing the following.
@@ -202,7 +264,7 @@ Save your file and then test your configuration changes by executing the followi
 $ sudo apachectl configtest
 ```
 
-If you get any message other than `Syntax OK` then you've done something wrong. You will need to check your changes made to the conf files and see where you may have gone wrong.
+If you get any message other than `Syntax OK` then you've done something wrong. You will need to check your changes made to the `.conf` file and see where you may have gone wrong.
 
 The final step is to restart Apache so that it loads your new error pages.
 
@@ -220,21 +282,20 @@ There is a `bash` script, found at [/src/scripts/minify][script] which runs the 
 
 You will need to install both `html-minifier` as well as `postcss` before you can execute the minifaction script.
 
-#### Installing `html-minifier`
+#### Installing html-minifier
 
 The best way to install `html-minifier` is by running the following commands in the project root folder.
 
 ```bash
 $ cd Apache-Error-Pages/
-$ rm -Rf html-minifier/ # ensure you are using the latest version.
 $ git clone git://github.com/kangax/html-minifier.git
 $ cd html-minifier
 $ npm link .
 ```
 
-#### Installing `postcss`
+#### Installing postcss
 
-Once `html-minifier` is installed you can install `postcss` as follows:
+Once `html-minifier` is installed you can install `postcss` as follows. Make sure that you are in the `/html-minifier/` folder when running the below commands (i.e. `$ cd html-minifier/`).
 
 ```bash
 $ npm install cssnano --save
@@ -248,6 +309,34 @@ You can run the script with this command:
 ```bash
 $ cd src/
 $ ./scripts/minify
+
+# expected output when executing `minify`:
+../dist folder reset
+400.html minified
+401.html minified
+403.html minified
+404.html minified
+405.html minified
+406.html minified
+407.html minified
+408.html minified
+411.html minified
+413.html minified
+414.html minified
+415.html minified
+429.html minified
+431.html minified
+500.html minified
+501.html minified
+502.html minified
+503.html minified
+504.html minified
+505.html minified
+breakpoints.css minified
+fontawesome-all.css minified
+google-fonts.css minified
+main.css minified
+Minification complete!
 ```
 
 There are no options for running this script. Executing this command will:
@@ -346,3 +435,7 @@ Thanks go out to the following for the inspiration, images, icons and, in some c
 [author-1]: https://github.com/justinhartman
 [.github]: https://github.com/justinhartman/.github
 [script]: src/scripts/minify
+[preview1]: https://ws3.sinaimg.cn/large/006tNc79gy1frbf2aw0v9j31kw0zk3zu.jpg
+[preview2]: https://ws3.sinaimg.cn/large/006tKfTcly1fraeyka1y6j31kw16o75d.jpg
+[preview3]: https://ws4.sinaimg.cn/large/006tKfTcly1fraeyf9bhzj30ku112gma.jpg
+[preview4]: https://ws4.sinaimg.cn/large/006tKfTcly1fraeye5bydj308w0dcdfw.jpg

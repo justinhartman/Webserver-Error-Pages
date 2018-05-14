@@ -2,6 +2,19 @@
 
 Below is a detailed change-log, along with specific tasks completed, for each version released to date for Apache Error Pages.
 
+## Version 1.1.0 (14/05/2018)
+
+- [#new](#new)
+  - New templates have been created as follows:
+    - 520.html
+    - 521.html
+    - 533.html
+- [#enhancement](#enhancement)
+  - Optimised the `minify` script to now compress the JavaScript contained in the file along with any CSS inputs.
+  - Updated `README.md` to include all available HTTP error codes when modifying `httpd.conf`.
+- [#bugfix](#bugfix)
+  - Removed the commit of `html-minifier` to the project. This would prevent users from cloning the repo in order to run the minification script.
+
 ## Version 1.0.1 (14/05/2018)
 
 - [#new](#new)
@@ -29,6 +42,5 @@ Grab everything you need from the `/dist/` folder. All other files support the c
     - Minify the HTML for all files in the `/src/` directory.
     - Minify the CSS for all the files in `/src/css/` directory.
     - Output the HTML and CSS to the `/dist/` folder.
-- [#bugfix](#bugfix)
 
 [script]: src/scripts/minify

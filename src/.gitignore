@@ -1,3 +1,2 @@
-4xx.json
-5xx.json
-other.json
+*.json
+*.md

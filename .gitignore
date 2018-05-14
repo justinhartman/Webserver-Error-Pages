@@ -7,3 +7,6 @@ docs/
 # Node packages. Not sure if this even helps.
 package.json
 package-lock.json
+
+# Third-party software
+html-minifier/
