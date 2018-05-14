@@ -1,0 +1,24 @@
+#!/bin/bash
+rm -Rf ../dist/other/*
+mkdir ../dist/other/css
+echo "The ../dist/other folder has been reset."
+
+# Run html-minifier to compress HTML and JavaScript.
+for VARIABLE in 420 520 521 533 900 901 902
+do
+    HTML_FILE_NAME="$VARIABLE.html"
+    html-minifier --collapse-whitespace --remove-comments --remove-optional-tags --remove-redundant-attributes --remove-script-type-attributes --remove-tag-whitespace --use-short-doctype --minify-css true --minify-js true ../src/other/$HTML_FILE_NAME -o ../dist/other/$HTML_FILE_NAME
+    echo "$HTML_FILE_NAME minified"
+done
+
+# Run postcss to compress all the CSS files.
+postcss ../src/css/ --dir ../dist/other/css/
+echo "All the CSS files have now been minified."
+
+# Create Symbolic links to the static items that aren't compressed.
+echo "Copying the /assets/ folder across..."
+cp -R ../dist/apache/assets ../dist/other/
+echo "Copying the /webfonts/ folder across..."
+cp -R ../dist/apache/webfonts ../dist/other/
+
+echo "Minification Complete!"

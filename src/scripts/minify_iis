@@ -1,0 +1,24 @@
+#!/bin/bash
+rm -Rf ../dist/ms-iis/*
+mkdir ../dist/ms-iis/css
+echo "The ../dist/ms-iis folder has been reset."
+
+# Run html-minifier to compress HTML and JavaScript.
+for VARIABLE in 440 449 451
+do
+    HTML_FILE_NAME="$VARIABLE.html"
+    html-minifier --collapse-whitespace --remove-comments --remove-optional-tags --remove-redundant-attributes --remove-script-type-attributes --remove-tag-whitespace --use-short-doctype --minify-css true --minify-js true ../src/ms-iis/$HTML_FILE_NAME -o ../dist/ms-iis/$HTML_FILE_NAME
+    echo "$HTML_FILE_NAME minified"
+done
+
+# Run postcss to compress all the CSS files.
+postcss ../src/css/ --dir ../dist/ms-iis/css/
+echo "All the CSS files have now been minified."
+
+# Create Symbolic links to the static items that aren't compressed.
+echo "Copying the /assets/ folder across..."
+cp -R ../dist/apache/assets ../dist/ms-iis/
+echo "Copying the /webfonts/ folder across..."
+cp -R ../dist/apache/webfonts ../dist/ms-iis/
+
+echo "Minification Complete!"

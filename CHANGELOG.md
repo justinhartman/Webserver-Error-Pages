@@ -2,6 +2,48 @@
 
 Below is a detailed change-log, along with specific tasks completed, for each version released to date for Apache Error Pages.
 
+## Version 2.0.0 (15/05/2018)
+
+- [#new](#new)
+  - Added link to Font Awesome License.
+  - New templates:
+    - `409.html`
+    - `410.html`
+    - `412.html`
+    - `416.html`
+    - `417.html`
+    - `418.html`
+    - `421.html`
+    - `422.html`
+    - `423.html`
+    - `424.html`
+    - `426.html`
+    - `428.html`
+    - `451.html`
+    - `506.html`
+    - `507.html`
+    - `508.html`
+    - `510.html`
+    - `511.html`
+    - `nginx/444.html`
+    - `nginx/494.html`
+    - `nginx/495.html`
+    - `nginx/496.html`
+    - `nginx/497.html`
+    - `nginx/499.html`
+    - `ms-iis/440.html`
+    - `ms-iis/449.html`
+    - `ms-iis/451.html`
+  - All template files missing have now been created. There are no outstanding error codes to add; the list is now exhaustive.
+  - Additional Server Support; now supporting Nginx, IIS and others.
+  - Added new minification scripts to minify additional templates for:
+    - Nginx: `./scripts/minify_nginx`
+    - MS IIS: `./scripts/minify_iis`
+    - Other: `./scripts/minify_other`
+- [#enhancement](#enhancement)
+  - Restructured the `/dist/` folder and cleaned it up so it now only contains sub-folders for the respective webservers.
+  - Apache templates files have moved from `/dist/` to `/dist/apache/`.
+
 ## Version 1.1.0 (14/05/2018)
 
 - [#new](#new)

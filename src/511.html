@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Apache Error Pages | AGPL License | https://github.com/justinhartman/Apache-Error-Pages -->
+    <meta charset="utf-8">
+    <title>511 - Network Authentication Required</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="/ErrorPages/css/fontawesome-all.css">
+    <link rel="stylesheet" href="/ErrorPages/css/main.css">
+    <link rel="stylesheet" href="/ErrorPages/css/breakpoints.css">
+</head>
+<body>
+    <div id="container">
+        <!-- 
+            We can use the following Font Awesome Icons & Colours:
+
+            <i class="fas fa-info-circle green"></i>
+            <i class="fas fa-exclamation-triangle orange"></i>
+            <i class="fas fa-times-circle red"></i>
+         -->
+        <div id="echoerror"><i class="fas fa-exclamation-triangle red"></i></div>
+    </div>
+    <div id="errormsg">
+        :~$ Error 511!<br>
+        Network Authentication Required<br>
+        <br>
+        The client needs to authenticate to gain network access. Intended for use by intercepting proxies used to control access to the network (e.g., "captive portals" used to require agreement to Terms of Service before granting full Internet access via a Wi-Fi hotspot).
+    </div>
+    <script type="text/javascript">
+        var charIndex = -1;
+        var stringLength = 0;
+        var inputText;
+        function writeContent()
+        {
+            inputText = document.getElementById('errormsg').innerHTML;
+            if (charIndex === -1) {
+                charIndex = 0;
+                stringLength = inputText.length;
+            }
+            var initString = document.getElementById('echoerror').innerHTML;
+            initString = initString.replace(/<span.*$/gi,"");
+
+            var theChar = inputText.charAt(charIndex);
+            var nextFourChars = inputText.substr(charIndex,4);
+
+            if (nextFourChars === '<br>') {
+                theChar = '<br>';
+                charIndex+=3;
+            }
+
+            initString = initString + theChar + "<span id='blink'>▌</span>";
+            document.getElementById('echoerror').innerHTML = initString;
+
+            time = 35;
+            charIndex = charIndex/1 +1;
+            if (charIndex <= stringLength) {
+                setTimeout('writeContent(false)',time);
+            }
+        }
+        writeContent();
+    </script>
+</body>
+</html>

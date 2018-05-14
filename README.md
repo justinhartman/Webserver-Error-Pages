@@ -2,6 +2,8 @@
 
 These Apache Error Pages project is a drop-in replacement of beautifully designed, user-friendly Apache 2 error pages. If you're tired of having _boring_ Apache error pages displayed to users then these might just be the solution for you.
 
+As of Version 2.0.0 there is now additional support for Nginx, Microsoft IIS and other webservers. Installation instructions are similar to Apache 2 and more details are contained below.
+
 <!-- @import "[TOC]" {cmd="toc" depthFrom=2 depthTo=6 orderedList=false} -->
 
 <!-- code_chunk_output -->
@@ -16,6 +18,7 @@ These Apache Error Pages project is a drop-in replacement of beautifully designe
 		* [Smartphone (older-generation)](#smartphone-older-generation)
 * [Installation](#installation)
 	* [Copying the Error Pages](#copying-the-error-pages)
+	* [Additional Server Support](#additional-server-support)
 	* [Modifying your Apache Config file](#modifying-your-apache-config-file)
 * [Minification Setup](#minification-setup)
 	* [Dependencies](#dependencies)
@@ -24,12 +27,15 @@ These Apache Error Pages project is a drop-in replacement of beautifully designe
 		* [Installing postcss](#installing-postcss)
 		* [Installing uglify-js](#installing-uglify-js)
 	* [Running the minify script](#running-the-minify-script)
+		* [Additional scripts](#additional-scripts)
+			* [Nginx](#nginx)
+			* [Microsoft IIS](#microsoft-iis)
+			* [Other](#other)
 * [Contributing](#contributing)
 * [Code of Conduct](#code-of-conduct)
 * [Versioning](#versioning)
 * [Change-Log](#change-log)
 * [Authors](#authors)
-* [TODO](#todo)
 * [License](#license)
 * [Acknowledgements](#acknowledgements)
 
@@ -41,7 +47,12 @@ These Apache Error Pages project is a drop-in replacement of beautifully designe
 * A compressed distribution **file size which totals only `78 KB`** (from `111 KB`) and includes Images, CSS, HTML and JavaScript. Total package size is `2.1 MB` with all the _Font Awesome_ and _Web Fonts_ included.
 * Fully responsive templates, **works across desktop, tablet and mobile** phones.
 * Animated text, **creating the experience of a terminal console**, outputting the respective error code to screen.
-* There are **27 templates**, 20 exclusively for Apache with an additional 7 for other web-servers. Enjoy!
+* Now **full support for Nginx, Microsoft IIS and other webservers** which are non-Apache related.
+* There are **54 templates**:
+  * **38** exclusively for Apache.
+  * **6** for `Nginx`.
+  * **7** `non-Apache` HTTP status codes templates.
+  * **3** for `Microsoft Internet Information Services`.
 * Each template, as well as all CSS files, have been minified to ensure the **smallest file size possible**.
 * **Font Awesome icons** used in error messages.
 
@@ -73,7 +84,7 @@ These Apache Error Pages project is a drop-in replacement of beautifully designe
 
 ## Installation
 
-Installing the drop-in replacement for Apache 2 error pages comes in two parts. First, you need to copy all the files contained within the `/dist/` folder to a location on your server. Second, you need to edit your `apache.conf` or `httpd.conf` file to link the error pages to your server installation.
+Installing the drop-in replacement for Apache 2 error pages comes in two parts. First, you need to copy all the files contained within the `/dist/apache/` folder to a location on your server. Second, you need to edit your `apache.conf` or `httpd.conf` file to link the error pages to your server installation.
 
 ### Copying the Error Pages
 
@@ -83,11 +94,11 @@ Do not replace the default error pages with this project's files. Instead, insta
 
 ```bash
 $ cd Apache-Error-Pages/
-$ cp -R dist/ /usr/local/var/www/error-pages
+$ cp -R dist/apache/ /usr/local/var/www/error-pages
 $ chown -R www:apache /usr/local/var/www/error-pages # see note below.
 ```
 
-**NB: _Ensure that you replace `www` and `apache`, in the `chown` command above, with your web-server's default user and group._**
+**Note: _Ensure that you replace `www` and `apache`, in the `chown` command above, with your web-server's default user and group._**
 
 Check to see if you have all the required files.
 
@@ -107,22 +118,36 @@ Make sure that you have the following file structure below.
 ├── 406.html
 ├── 407.html
 ├── 408.html
+├── 409.html
+├── 410.html
 ├── 411.html
+├── 412.html
 ├── 413.html
 ├── 414.html
 ├── 415.html
-├── 420.html
+├── 416.html
+├── 417.html
+├── 418.html
+├── 421.html
+├── 422.html
+├── 423.html
+├── 424.html
+├── 426.html
+├── 428.html
 ├── 429.html
 ├── 431.html
+├── 451.html
 ├── 500.html
 ├── 501.html
 ├── 502.html
 ├── 503.html
 ├── 504.html
 ├── 505.html
-├── 900.html
-├── 901.html
-├── 902.html
+├── 506.html
+├── 507.html
+├── 508.html
+├── 510.html
+├── 511.html
 ├── assets
 │   └── imac.svg
 ├── css
@@ -151,7 +176,19 @@ Make sure that you have the following file structure below.
     ├── fa-solid-900.ttf
     ├── fa-solid-900.woff
     └── fa-solid-900.woff2
+
+3 directories, 63 files
 ```
+
+### Additional Server Support
+
+In addition to the above Apache 2 error pages there is also support for additional webservers. You can find production-ready, minified template files for the following webservers:
+
+* Nginx files located at `dist/nginx/`
+* Microsoft IIS files located at `dist/ms-iis/`
+* Other webserver files located at `dist/other/`
+
+You can copy the template files required from any of these additional webserver folders to your server installation.
 
 ### Modifying your Apache Config file
 
@@ -248,18 +285,36 @@ ErrorDocument 405 /ErrorPages/405.html
 ErrorDocument 406 /ErrorPages/406.html
 ErrorDocument 407 /ErrorPages/407.html
 ErrorDocument 408 /ErrorPages/408.html
+ErrorDocument 409 /ErrorPages/409.html
+ErrorDocument 410 /ErrorPages/410.html
 ErrorDocument 411 /ErrorPages/411.html
+ErrorDocument 412 /ErrorPages/412.html
 ErrorDocument 413 /ErrorPages/413.html
 ErrorDocument 414 /ErrorPages/414.html
 ErrorDocument 415 /ErrorPages/415.html
+ErrorDocument 416 /ErrorPages/416.html
+ErrorDocument 417 /ErrorPages/417.html
+# ErrorDocument 418 /ErrorPages/418.html (this isn't working and not sure why)
+ErrorDocument 421 /ErrorPages/421.html
+ErrorDocument 422 /ErrorPages/422.html
+ErrorDocument 423 /ErrorPages/423.html
+ErrorDocument 424 /ErrorPages/424.html
+ErrorDocument 426 /ErrorPages/426.html
+ErrorDocument 428 /ErrorPages/428.html
 ErrorDocument 429 /ErrorPages/429.html
 ErrorDocument 431 /ErrorPages/431.html
+ErrorDocument 451 /ErrorPages/451.html
 ErrorDocument 500 /ErrorPages/500.html
 ErrorDocument 501 /ErrorPages/501.html
 ErrorDocument 502 /ErrorPages/502.html
 ErrorDocument 503 /ErrorPages/503.html
 ErrorDocument 504 /ErrorPages/504.html
 ErrorDocument 505 /ErrorPages/505.html
+ErrorDocument 506 /ErrorPages/506.html
+ErrorDocument 507 /ErrorPages/507.html
+ErrorDocument 508 /ErrorPages/508.html
+ErrorDocument 510 /ErrorPages/510.html
+ErrorDocument 511 /ErrorPages/511.html
 ```
 
 Save your file and then test your configuration changes by executing the following.
@@ -332,7 +387,7 @@ $ cd src/
 $ ./scripts/minify
 
 # expected output when executing `minify`:
-The ../dist folder has been reset.
+The ../dist/apache folder has been reset.
 400.html minified
 401.html minified
 403.html minified
@@ -341,30 +396,114 @@ The ../dist folder has been reset.
 406.html minified
 407.html minified
 408.html minified
+409.html minified
+410.html minified
 411.html minified
+412.html minified
 413.html minified
 414.html minified
 415.html minified
+416.html minified
+417.html minified
+418.html minified
+421.html minified
+422.html minified
+423.html minified
+424.html minified
+426.html minified
+428.html minified
 429.html minified
 431.html minified
+451.html minified
 500.html minified
 501.html minified
 502.html minified
 503.html minified
 504.html minified
 505.html minified
+506.html minified
+507.html minified
+508.html minified
+510.html minified
+511.html minified
 All the CSS files have now been minified.
 Minification Complete!
 ```
 
 There are no options for running this script. Executing this command will:
 
-* Delete the `/dist/css/` folder.
-* Delete all the error pages with `rm -f ../dist/*.html`.
-* Recreate the `/dist/css/` folder.
+* Delete the `/dist/apache/css/` folder.
+* Delete all the error pages with `rm -f ../dist/apache/*.html`.
+* Recreate the `/dist/apache/css/` folder.
 * Minify the HTML for all files in the `/src/` directory.
 * Minify the CSS for all the files in `/src/css/` directory.
-* Output the HTML and CSS to the `/dist/` folder.
+* Output the HTML and CSS to the `/dist/apache/` folder.
+
+#### Additional scripts
+
+##### Nginx
+
+There are additional templates which are used only by `nginx`. These templates are included in the `dist/nginx/` folder and the script below will minify the files for this folder.
+ 
+```bash
+$ cd src/
+$ ./scripts/minify_nginx
+
+# expected output when executing `minify_nginx`:
+The ../dist/nginx folder has been reset.
+444.html minified
+494.html minified
+495.html minified
+496.html minified
+497.html minified
+499.html minified
+All the CSS files have now been minified.
+Copying the /assets/ folder across...
+Copying the /webfonts/ folder across...
+Minification Complete!
+```
+
+##### Microsoft IIS
+
+There are additional templates which are used only by Microsoft Internet Information Services. These templates are included in the `dist/ms-iis/` folder and the script below will minify the files for this folder.
+ 
+```bash
+$ cd src/
+$ ./scripts/minify_iis
+
+# expected output when executing `minify_iis`:
+The ../dist/ms-iis folder has been reset.
+440.html minified
+449.html minified
+451.html minified
+All the CSS files have now been minified.
+Copying the /assets/ folder across...
+Copying the /webfonts/ folder across...
+Minification Complete!
+```
+
+##### Other
+
+There are additional templates which are used only by other webservers. These templates are included in the `dist/other/` folder and the script below will minify the files for this folder.
+ 
+```bash
+$ cd src/
+$ ./scripts/minify_other
+
+# expected output when executing `minify_other`:
+The ../dist/other folder has been reset.
+420.html minified
+520.html minified
+521.html minified
+533.html minified
+900.html minified
+901.html minified
+902.html minified
+All the CSS files have now been minified.
+Copying the /assets/ folder across...
+Copying the /webfonts/ folder across...
+Minification Complete!
+```
 
 ## Contributing
 
@@ -380,17 +519,13 @@ We use [Semantic Versioning][semver] for software versions of this project. For 
 
 ## Change-Log
 
-View the [`CHANGELOG.md`][changelog] file for a detailed list of changes, along with specific tasks completed for each version released to date.
+View the [CHANGELOG.md][changelog] file for a detailed list of changes, along with specific tasks completed for each version released to date.
 
 ## Authors
 
 * Justin Hartman - [@justinhartman][author-1]
 
 Also see the list of [contributors][contribs] who have participated in this project.
-
-## TODO
-
-A detailed list of TODO items can be found [over here][todo].
 
 ## License
 
@@ -418,7 +553,7 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
 Thanks go out to the following for the inspiration, images, icons and, in some cases, the code to back this project up.
 
 * [Computer SVG][vector] by Kameleon - License [CC BY 3.0][ccby30].
-* Icons by [Font Awesome][fontawesome] - License [CC BY 4.0][ccby40].
+* Icons by [Font Awesome][fontawesome] - Read [License here][fa-license].
 * [html-minifier][html-min] - for compressing the `/src/*.html`  files into the `/dist/*.html` folder. License: [MIT][mit].
 * [PostCSS][postcss] - for compressing the `/src/css/` css files into the `/dist/css/` folder. License: [MIT][mit].
 * [@maicong/ErrorPages][maicong] - for the terminal/console output code. License: [MIT][mit].
@@ -437,12 +572,12 @@ Thanks go out to the following for the inspiration, images, icons and, in some c
 [gpl]: http://www.gnu.org/licenses/#GPL
 [trimstray]: https://github.com/trimstray/http-error-pages
 [fontawesome]: https://www.fontawesome.com
+[fa-license]: licenses/LICENSE.txt
 [agpl]: https://opensource.org/licenses/AGPL-3.0
 [site]: https://justin.hartman.me
 [email]: mailto:justin@hartman.me?subject=Github+Contact
 [license]: LICENSE
 [404-template]: https://ws2.sinaimg.cn/large/006tKfTcly1fr3klp9lp9g30hs0a1gyv.gif
-[todo]: TODO.md
 [CONTRIBUTING]: CONTRIBUTING.md
 [COC]: CODE_OF_CONDUCT.md
 [changelog]: CHANGELOG.md
