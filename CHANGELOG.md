@@ -9,8 +9,14 @@ Below is a detailed change-log, along with specific tasks completed, for each ve
     - 520.html
     - 521.html
     - 533.html
+  - Added `v1.0.0` of the `package.json` file which contains the dependencies for executing the `minify` script. You can run `$ npm install` from the project root folder and you _should_ have all the Node modules to run `$ ./scripts/minify`.
+  - Added `postcss.config.js` to load the `cssnano` plugin.
 - [#enhancement](#enhancement)
   - Optimised the `minify` script to now compress the JavaScript contained in the file along with any CSS inputs.
+  - Optimised the CSS minification by using `postcss.config.js` to load the `cssnano` plugin which now reduces all CSS to one line of code.
+  - New, minified versions for the CSS and HTML files have been created. The HTML templates are now one line of code as is the same with the CSS templates. File size has been reduced as follows:
+    - CSS files: from `61 KB` to `44 KB` (`27.87%` file size reduction).
+    - HTML files: from `46.3 KB` to `24.1 KB` (`47.95%` file size reduction).
   - Updated `README.md` to include all available HTTP error codes when modifying `httpd.conf`.
 - [#bugfix](#bugfix)
   - Removed the commit of `html-minifier` to the project. This would prevent users from cloning the repo in order to run the minification script.

@@ -20,7 +20,9 @@ These Apache Error Pages project is a drop-in replacement of beautifully designe
 * [Minification Setup](#minification-setup)
 	* [Dependencies](#dependencies)
 		* [Installing html-minifier](#installing-html-minifier)
+		* [Using Node to install the packages](#using-node-to-install-the-packages)
 		* [Installing postcss](#installing-postcss)
+		* [Installing uglify-js](#installing-uglify-js)
 	* [Running the minify script](#running-the-minify-script)
 * [Contributing](#contributing)
 * [Code of Conduct](#code-of-conduct)
@@ -35,11 +37,13 @@ These Apache Error Pages project is a drop-in replacement of beautifully designe
 
 ## Features
 
-* Fully responsive templates, works across desktop, tablet and mobile phones.
-* Animated text, creating the illusion of an error output on a Terminal console.
-* There are 27 templates, 20 exclusively for Apache with an additional 7 for other web-servers. Enjoy!
-* Each template, as well as all CSS files, have been minified to ensure the smallest file usage possible.
-* Font Awesome icons used in error messages.
+* **Completely off-line functionality**. There is no dependence on an Internet connection for these pages to work. Everything is self-contained in the distribution (`/dist/`) folder.
+* A compressed distribution **file size which totals only `78 KB`** (from `111 KB`) and includes Images, CSS, HTML and JavaScript. Total package size is `2.1 MB` with all the _Font Awesome_ and _Web Fonts_ included.
+* Fully responsive templates, **works across desktop, tablet and mobile** phones.
+* Animated text, **creating the experience of a terminal console**, outputting the respective error code to screen.
+* There are **27 templates**, 20 exclusively for Apache with an additional 7 for other web-servers. Enjoy!
+* Each template, as well as all CSS files, have been minified to ensure the **smallest file size possible**.
+* **Font Awesome icons** used in error messages.
 
 [Installation instructions](#installation) are found below the previews. This shouldn't take you more than **5 minutes** to implement these hand-crafted, custom-designed Apache error pages.
 
@@ -280,7 +284,7 @@ There is a `bash` script, found at [/src/scripts/minify][script] which runs the 
 
 ### Dependencies
 
-You will need to install both `html-minifier` as well as `postcss` before you can execute the minifaction script.
+You will need to install, `html-minifier`, `postcss` (and plugins) and `uglify-js` before you can execute the minifaction script. You can do this by following the commands below or by using the `package.json` file located at the root folder of the project repo. Either way, you will need to install `html-minifier` before using `Node` to get the required modules.
 
 #### Installing html-minifier
 
@@ -293,13 +297,30 @@ $ cd html-minifier
 $ npm link .
 ```
 
-#### Installing postcss
+#### Using Node to install the packages
 
-Once `html-minifier` is installed you can install `postcss` as follows. Make sure that you are in the `/html-minifier/` folder when running the below commands (i.e. `$ cd html-minifier/`).
+As of version `v1.1.0` there is now a `package.json` file contained at the root of this project folder. This file contains all the dependencies required to execute the `./scripts/minify` script. You can run the following commands and it will install `postcss`, along with various plugins, as well as `uglify-js` which is used by `html-minifier`.
 
 ```bash
-$ npm install cssnano --save
-$ npm install postcss-cli --global
+$ npm install
+```
+
+You will now have a new `/node_modules/` folder and you should be good to go to execute `./scripts/minify`. You can ignore `Installing postcss` and `Installing uglify-js`, in the steps below, as you will have these installed already.
+
+#### Installing postcss
+
+Once `html-minifier` is installed you can install `postcss` as follows.
+
+```bash
+$ npm install postcss-import css-mqpacker cssnano@next postcss-cli --save-dev
+```
+
+#### Installing uglify-js
+
+While the `minify` script doesn't directly use `uglify-js` by way of any direct commands; it is required for the JavaScript compression when executing `html-minifier`. You can install `uglify-js` with the following.
+
+```bash
+$ npm install uglify-js --save-dev
 ```
 
 ### Running the minify script
@@ -311,7 +332,7 @@ $ cd src/
 $ ./scripts/minify
 
 # expected output when executing `minify`:
-../dist folder reset
+The ../dist folder has been reset.
 400.html minified
 401.html minified
 403.html minified
@@ -332,11 +353,8 @@ $ ./scripts/minify
 503.html minified
 504.html minified
 505.html minified
-breakpoints.css minified
-fontawesome-all.css minified
-google-fonts.css minified
-main.css minified
-Minification complete!
+All the CSS files have now been minified.
+Minification Complete!
 ```
 
 There are no options for running this script. Executing this command will:
@@ -401,8 +419,8 @@ Thanks go out to the following for the inspiration, images, icons and, in some c
 
 * [Computer SVG][vector] by Kameleon - License [CC BY 3.0][ccby30].
 * Icons by [Font Awesome][fontawesome] - License [CC BY 4.0][ccby40].
-* [html-minifier][html-min] - for compressing the `/src/` html files into the `/dist/` folder. License: [MIT][mit].
-* [PostCSS][postcss] - for compressing the `/src/` css files into the `/dist/` folder. License: [MIT][mit].
+* [html-minifier][html-min] - for compressing the `/src/*.html`  files into the `/dist/*.html` folder. License: [MIT][mit].
+* [PostCSS][postcss] - for compressing the `/src/css/` css files into the `/dist/css/` folder. License: [MIT][mit].
 * [@maicong/ErrorPages][maicong] - for the terminal/console output code. License: [MIT][mit].
 * [@trimstray/http-error-pages][trimstray] - for giving me the inspiration to use icons as part of the design. License: [GPLv3][gpl].
 * [@jongha/httperrorpages][jongha] - for the error pages status message descriptions. License: [MIT][mit].

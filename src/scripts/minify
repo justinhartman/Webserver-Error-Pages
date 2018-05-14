@@ -2,8 +2,9 @@
 rm -rf ../dist/css
 rm -f ../dist/*.html
 mkdir ../dist/css
-echo "../dist folder reset"
+echo "The ../dist folder has been reset."
 
+# Run html-minifier to compress HTML and JavaScript.
 for VARIABLE in 400 401 403 404 405 406 407 408 411 413 414 415 429 431 500 501 502 503 504 505
 do
     HTML_FILE_NAME="$VARIABLE.html"
@@ -11,15 +12,12 @@ do
     echo "$HTML_FILE_NAME minified"
 done
 
-for VARIABLE in breakpoints.css fontawesome-all.css google-fonts.css main.css
-do
-    CSS_FILE_NAME="$VARIABLE"
-    postcss ../src/css/$CSS_FILE_NAME > ../dist/css/$CSS_FILE_NAME
-    echo "$CSS_FILE_NAME minified"
-done
+# Run postcss to compress all the CSS files.
+postcss ../src/css/ --dir ../dist/css/
+echo "All the CSS files have now been minified."
 
 # JS_FILE_NAME="<your file name"
 # uglifyjs --compress --mangle -o ../dist/$JS_FILE_NAME -- $JS_FILE_NAME
 # echo "$JS_FILE_NAME minified"
 
-echo "Minification complete!"
+echo "Minification Complete!"

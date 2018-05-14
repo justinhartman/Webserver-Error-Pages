@@ -5,8 +5,11 @@
 docs/
 
 # Node packages. Not sure if this even helps.
-package.json
-package-lock.json
+#package.json
+#package-lock.json
+
+# Hide the Node modules.
+node_modules/
 
 # Third-party software
 html-minifier/
