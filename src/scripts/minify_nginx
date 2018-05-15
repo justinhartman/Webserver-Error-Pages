@@ -1,24 +1,101 @@
 #!/bin/bash
-rm -Rf ../dist/nginx/*
-mkdir ../dist/nginx/css
-echo "The ../dist/nginx folder has been reset."
+#
+# Minify all the source HTML, JavaScript and CSS and save to /dist/ folder.
+# 
+# Copyright: Copyright (C) 2018 Justin Hartman (https://justin.hartman.me)
+# Author   : Justin Hartman <justin@hartman.me> (https://justin.hartman.me)
+# License  : https://opensource.org/licenses/AGPL-3.0 AGPL-3.0
+# Version  : 2.0.1
+# Link     : https://github.com/justinhartman/Apache-Error-Pages
+# Link     : https://justin.hartman.me
+# Since    : 1.0.0
+# 
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU Affero General Public License as
+# published by the Free Software Foundation, either version 3 of the
+# License, or (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# GNU Affero General Public License for more details.
+#
+# You should have received a copy of the GNU Affero General Public License
+# along with this program. If not, see <https://www.gnu.org/licenses/>.
+# 
 
-# Run html-minifier to compress HTML and JavaScript.
-for VARIABLE in 444 494 495 496 497 499
-do
-    HTML_FILE_NAME="$VARIABLE.html"
-    html-minifier --collapse-whitespace --remove-comments --remove-optional-tags --remove-redundant-attributes --remove-script-type-attributes --remove-tag-whitespace --use-short-doctype --minify-css true --minify-js true ../src/nginx/$HTML_FILE_NAME -o ../dist/nginx/$HTML_FILE_NAME
-    echo "$HTML_FILE_NAME minified"
-done
+#######################################
+# Clears out the distribution folder
+# and re-creates the CSS folder.
+# Globals:
+#   None
+# Arguments:
+#   None
+# Returns:
+#   String
+#######################################
+reset_dist ()
+{
+    rm -Rf ../dist/nginx/*
+    mkdir ../dist/nginx/css
+    echo "The ../dist/nginx folder has been reset."
+}
 
-# Run postcss to compress all the CSS files.
-postcss ../src/css/ --dir ../dist/nginx/css/
-echo "All the CSS files have now been minified."
+#######################################
+# Run html-minifier to compress HTML 
+# and JavaScript.
+# Globals:
+#   None
+# Arguments:
+#   None
+# Returns:
+#   String
+#######################################
+minfy_html ()
+{
+    for VARIABLE in 444 494 495 496 497 499
+    do
+        HTML_FILE_NAME="$VARIABLE.html"
+        html-minifier --collapse-whitespace --remove-comments --remove-optional-tags --remove-redundant-attributes --remove-script-type-attributes --remove-tag-whitespace --use-short-doctype --minify-css true --minify-js true ../src/nginx/$HTML_FILE_NAME -o ../dist/nginx/$HTML_FILE_NAME
+        echo "$HTML_FILE_NAME minified"
+    done
+}
 
-# Create Symbolic links to the static items that aren't compressed.
-echo "Copying the /assets/ folder across..."
-cp -R ../dist/apache/assets ../dist/nginx/
-echo "Copying the /webfonts/ folder across..."
-cp -R ../dist/apache/webfonts ../dist/nginx/
+#######################################
+# Run postcss to compress all the 
+# CSS files.
+# Globals:
+#   None
+# Arguments:
+#   None
+# Returns:
+#   String
+#######################################
+minify_css ()
+{
+    postcss ../src/css/ --dir ../dist/nginx/css/
+    echo "All the CSS files have now been minified."
+}
 
+#######################################
+# Copy all the static items that 
+# aren't compressed.
+# Globals:
+#   None
+# Arguments:
+#   None
+# Returns:
+#   String
+#######################################
+copy_assets ()
+{
+    echo "Copying the assets and fonts..."
+    cp -R ../src/static/* ../dist/nginx/
+}
+
+reset_dist
+minfy_html
+minify_css
+copy_assets
 echo "Minification Complete!"
+exit 0
