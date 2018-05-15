@@ -2,6 +2,18 @@
 
 Below is a detailed change-log, along with specific tasks completed, for each version released to date for Apache Error Pages.
 
+## Version 2.0.1 (15/05/2018)
+
+- [#new](#new)
+  - Moved `/assets/` and `/webfonts/` to new `/src/static/` folder for better organisation.
+- [#enhancement](#enhancement)
+  - Created proper functions for all the minfy scripts:
+    - `src/scripts/minify`
+    - `src/scripts/minify_iis`
+    - `src/scripts/minify_nginx`
+    - `src/scripts/minify_other`
+  - Changed `src/scripts/minify` script to now copy everything in the `/src/static/` folder so that it acts like the other scripts when installing the assets and fonts.
+
 ## Version 2.0.0 (15/05/2018)
 
 - [#new](#new)

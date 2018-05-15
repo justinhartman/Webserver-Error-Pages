@@ -1,6 +1,6 @@
-# Apache Error Pages Replacement
+# Apache, Nginx and IIS HTTP Error Pages Replacement
 
-These Apache Error Pages project is a drop-in replacement of beautifully designed, user-friendly Apache 2 error pages. If you're tired of having _boring_ Apache error pages displayed to users then these might just be the solution for you.
+The Apache, Nginx and IIS Error Pages project is a drop-in replacement of beautifully designed, user-friendly Apache 2, Nginx and IIS error pages. If you're tired of having _boring_ error pages displayed to users then these might just be the solution for you.
 
 As of Version 2.0.0 there is now additional support for Nginx, Microsoft IIS and other webservers. Installation instructions are similar to Apache 2 and more details are contained below.
 
@@ -427,16 +427,17 @@ The ../dist/apache folder has been reset.
 510.html minified
 511.html minified
 All the CSS files have now been minified.
+Copying the assets and fonts...
 Minification Complete!
 ```
 
 There are no options for running this script. Executing this command will:
 
-* Delete the `/dist/apache/css/` folder.
-* Delete all the error pages with `rm -f ../dist/apache/*.html`.
+* Delete the contents in the `/dist/apache/` folder.
 * Recreate the `/dist/apache/css/` folder.
-* Minify the HTML for all files in the `/src/` directory.
+* Minify the HTML for all files in the `/src/apache/` directory.
 * Minify the CSS for all the files in `/src/css/` directory.
+* Copy unminified assets and fonts in `/src/static/` directory.
 * Output the HTML and CSS to the `/dist/apache/` folder.
 
 #### Additional scripts
@@ -458,8 +459,7 @@ The ../dist/nginx folder has been reset.
 497.html minified
 499.html minified
 All the CSS files have now been minified.
-Copying the /assets/ folder across...
-Copying the /webfonts/ folder across...
+Copying the assets and fonts...
 Minification Complete!
 ```
 
@@ -477,8 +477,7 @@ The ../dist/ms-iis folder has been reset.
 449.html minified
 451.html minified
 All the CSS files have now been minified.
-Copying the /assets/ folder across...
-Copying the /webfonts/ folder across...
+Copying the assets and fonts...
 Minification Complete!
 ```
 
@@ -500,8 +499,7 @@ The ../dist/other folder has been reset.
 901.html minified
 902.html minified
 All the CSS files have now been minified.
-Copying the /assets/ folder across...
-Copying the /webfonts/ folder across...
+Copying the assets and fonts...
 Minification Complete!
 ```
 
