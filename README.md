@@ -1,4 +1,4 @@
-# Apache, Nginx and IIS HTTP Error Pages Replacement
+# Apache, Nginx and IIS Webserver HTTP Error Pages Replacement
 
 The Apache, Nginx and IIS Error Pages project is a drop-in replacement of beautifully designed, user-friendly Apache 2, Nginx and IIS error pages. If you're tired of having _boring_ error pages displayed to users then these might just be the solution for you.
 
@@ -580,9 +580,9 @@ Thanks go out to the following for the inspiration, images, icons and, in some c
 [COC]: CODE_OF_CONDUCT.md
 [changelog]: CHANGELOG.md
 [semver]: http://semver.org
-[tags]: https://github.com/justinhartman/Apache-Error-Pages/tags
-[releases]: https://github.com/justinhartman/Apache-Error-Pages/releases
-[contribs]: https://github.com/justinhartman/Apache-Error-Pages/contributors
+[tags]: https://github.com/justinhartman/Webserver-Error-Pages/tags
+[releases]: https://github.com/justinhartman/Webserver-Error-Pages/releases
+[contribs]: https://github.com/justinhartman/Webserver-Error-Pages/contributors
 [author-1]: https://github.com/justinhartman
 [.github]: https://github.com/justinhartman/.github
 [script]: src/scripts/minify

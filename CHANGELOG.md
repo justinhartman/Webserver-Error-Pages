@@ -2,10 +2,16 @@
 
 Below is a detailed change-log, along with specific tasks completed, for each version released to date for Apache Error Pages.
 
+## Version 2.0.2 (15/05/2018)
+
+- [#enhancement](#enhancement)
+  - Renamed the Git repo from `Apache-Error-Pages` to `Webserver-Error-Pages` as there is now support for additional webservers.
+
 ## Version 2.0.1 (15/05/2018)
 
 - [#new](#new)
   - Moved `/assets/` and `/webfonts/` to new `/src/static/` folder for better organisation.
+  - Cleaned up the `/src/` folder by moving all the Apache HTML templates to `/src/apache/` and the minify script now builds the distribution files out of this new folder.
 - [#enhancement](#enhancement)
   - Created proper functions for all the minfy scripts:
     - `src/scripts/minify`

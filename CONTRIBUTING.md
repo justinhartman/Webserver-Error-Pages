@@ -23,5 +23,5 @@ Thanks for contributing! :heart:
 
 [//]: # (Simply change the URL's below to your own project information)
 
-[issues]: https://github.com/justinhartman/Apache-Error-Pages/issues
-[new-issue]: https://github.com/justinhartman/Apache-Error-Pages/issues/new
+[issues]: https://github.com/justinhartman/Webserver-Error-Pages/issues
+[new-issue]: https://github.com/justinhartman/Webserver-Error-Pages/issues/new
