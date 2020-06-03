@@ -1,15 +1,14 @@
 #!/bin/bash
 #
 # Minify all the source HTML, JavaScript and CSS and save to /dist/ folder.
-# 
-# Copyright: Copyright (C) 2018 Justin Hartman (https://justin.hartman.me)
-# Author   : Justin Hartman <justin@hartman.me> (https://justin.hartman.me)
+#
+# Copyright: Copyright 2018-2020 Justin Hartman (https://hartman.me)
+# Author   : Justin Hartman <justin@hartman.me> (https://hartman.me)
 # License  : https://opensource.org/licenses/AGPL-3.0 AGPL-3.0
-# Version  : 2.0.1
+# Version  : 2.1.0
 # Link     : https://github.com/justinhartman/Apache-Error-Pages
-# Link     : https://justin.hartman.me
 # Since    : 1.0.0
-# 
+#
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU Affero General Public License as
 # published by the Free Software Foundation, either version 3 of the
@@ -22,7 +21,7 @@
 #
 # You should have received a copy of the GNU Affero General Public License
 # along with this program. If not, see <https://www.gnu.org/licenses/>.
-# 
+#
 
 #######################################
 # Clears out the distribution folder
@@ -34,15 +33,14 @@
 # Returns:
 #   String
 #######################################
-reset_dist ()
-{
+reset_dist() {
     rm -rf ../dist/apache/*
     mkdir ../dist/apache/css
     echo "The ../dist/apache folder has been reset."
 }
 
 #######################################
-# Run html-minifier to compress HTML 
+# Run html-minifier to compress HTML
 # and JavaScript.
 # Globals:
 #   None
@@ -51,10 +49,8 @@ reset_dist ()
 # Returns:
 #   String
 #######################################
-minfy_html ()
-{
-    for VARIABLE in 400 401 403 404 405 406 407 408 409 410 411 412 413 414 415 416 417 418 421 422 423 424 426 428 429 431 451 500 501 502 503 504 505 506 507 508 510 511
-    do
+minfy_html() {
+    for VARIABLE in 400 401 403 404 405 406 407 408 409 410 411 412 413 414 415 416 417 418 421 422 423 424 426 428 429 431 451 500 501 502 503 504 505 506 507 508 510 511; do
         HTML_FILE_NAME="$VARIABLE.html"
         html-minifier --collapse-whitespace --remove-comments --remove-optional-tags --remove-redundant-attributes --remove-script-type-attributes --remove-tag-whitespace --use-short-doctype --minify-css true --minify-js true ../src/apache/$HTML_FILE_NAME -o ../dist/apache/$HTML_FILE_NAME
         echo "$HTML_FILE_NAME minified"
@@ -62,7 +58,7 @@ minfy_html ()
 }
 
 #######################################
-# Run postcss to compress all the 
+# Run postcss to compress all the
 # CSS files.
 # Globals:
 #   None
@@ -71,14 +67,13 @@ minfy_html ()
 # Returns:
 #   String
 #######################################
-minify_css ()
-{
-    postcss ../src/css/ --dir ../dist/apache/css/
+minify_css() {
+    ../node_modules/.bin/postcss ../src/css/ -m --dir ../dist/apache/css/
     echo "All the CSS files have now been minified."
 }
 
 #######################################
-# Copy all the static items that 
+# Copy all the static items that
 # aren't compressed.
 # Globals:
 #   None
@@ -87,8 +82,7 @@ minify_css ()
 # Returns:
 #   String
 #######################################
-copy_assets ()
-{
+copy_assets() {
     echo "Copying the assets and fonts..."
     cp -R ../src/static/* ../dist/apache/
 }

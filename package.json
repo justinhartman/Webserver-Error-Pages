@@ -1,8 +1,8 @@
 {
-  "name": "minify",
-  "description": "Required npm packages for running the minify script.",
-  "homepage": "https://justin.hartman.me/",
-  "version": "1.1.0",
+  "name": "webserver-error-pages",
+  "description": "Drop-in replacement of 54 beautifully designed error pages.",
+  "homepage": "https://hartman.me/",
+  "version": "2.1.0",
   "author": "Justin Hartman",
   "license": "AGPL-3.0",
   "repository": {
@@ -13,10 +13,10 @@
     "url": "https://github.com/justinhartman/Apache-Error-Pages/issues"
   },
   "devDependencies": {
-    "css-mqpacker": "^6.0.2",
-    "cssnano": "^4.0.0-rc.2",
-    "postcss-cli": "^5.0.0",
-    "postcss-import": "^11.1.0",
-    "uglify-js": "^3.3.25"
+    "css-mqpacker": "^7.0.0",
+    "cssnano": "^4.1.10",
+    "postcss-cli": "^7.1.1",
+    "postcss-import": "^12.0.1",
+    "uglify-js": "^3.9.4"
   }
 }

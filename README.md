@@ -14,8 +14,7 @@ As of Version 2.0.0 there is now additional support for Nginx, Microsoft IIS and
 	* [Responsive Design](#responsive-design)
 		* [Desktop](#desktop)
 		* [Tablet](#tablet)
-		* [Smartphone](#smartphone)
-		* [Smartphone (older-generation)](#smartphone-older-generation)
+		* [Mobile](#mobile)
 * [Installation](#installation)
 	* [Copying the Error Pages](#copying-the-error-pages)
 	* [Additional Server Support](#additional-server-support)
@@ -24,8 +23,6 @@ As of Version 2.0.0 there is now additional support for Nginx, Microsoft IIS and
 	* [Dependencies](#dependencies)
 		* [Installing html-minifier](#installing-html-minifier)
 		* [Using Node to install the packages](#using-node-to-install-the-packages)
-		* [Installing postcss](#installing-postcss)
-		* [Installing uglify-js](#installing-uglify-js)
 	* [Running the minify script](#running-the-minify-script)
 		* [Additional scripts](#additional-scripts)
 			* [Nginx](#nginx)
@@ -43,20 +40,20 @@ As of Version 2.0.0 there is now additional support for Nginx, Microsoft IIS and
 
 ## Features
 
-* **Completely off-line functionality**. There is no dependence on an Internet connection for these pages to work. Everything is self-contained in the distribution (`/dist/`) folder.
+* **Complete off-line functionality**. There is no dependence on an Internet connection for these pages to work. Everything is self-contained in the distribution (`/dist/`) folder.
 * A compressed distribution **file size which totals only `78 KB`** (from `111 KB`) and includes Images, CSS, HTML and JavaScript. Total package size is `2.1 MB` with all the _Font Awesome_ and _Web Fonts_ included.
-* Fully responsive templates, **works across desktop, tablet and mobile** phones.
-* Animated text, **creating the experience of a terminal console**, outputting the respective error code to screen.
+* Fully responsive templates, **works across desktop, tablet and mobile**.
+* Animated text, **creating the experience of a terminal console**, outputting the respective error code and description of error on screen.
 * Now **full support for Nginx, Microsoft IIS and other webservers** which are non-Apache related.
 * There are **54 templates**:
-  * **38** exclusively for Apache.
-  * **6** for `Nginx`.
-  * **7** `non-Apache` HTTP status codes templates.
-  * **3** for `Microsoft Internet Information Services`.
-* Each template, as well as all CSS files, have been minified to ensure the **smallest file size possible**.
+    * **38** are exclusive for Apache.
+    * **6** for `Nginx`.
+    * **7** general/other HTTP status codes templates.
+    * **3** for `Microsoft Internet Information Services`.
+* Each template, as well as all CSS files, have been minified to ensure the **smallest possible file size**.
 * **Font Awesome icons** used in error messages.
 
-[Installation instructions](#installation) are found below the previews. This shouldn't take you more than **5 minutes** to implement these hand-crafted, custom-designed Apache error pages.
+[Installation instructions](#installation) are found below the previews. This shouldn't take you more than **5 minutes** to implement these hand-crafted, custom-designed error pages.
 
 ## Preview
 
@@ -74,13 +71,9 @@ As of Version 2.0.0 there is now additional support for Nginx, Microsoft IIS and
 
 ![Tablet Version][preview2]
 
-#### Smartphone
+#### Mobile
 
 ![iOS and Android Version][preview3]
-
-#### Smartphone (older-generation)
-
-![Older Generation Smartphone Version][preview4]
 
 ## Installation
 
@@ -92,8 +85,9 @@ A typical Apache 2 installation will already have a set of Error pages contained
 
 Do not replace the default error pages with this project's files. Instead, install them in a different, but accessible location that the Apache user can access. These commands will copy the project's error pages to your `www` folder.
 
-```bash
-$ cd Apache-Error-Pages/
+```console
+$ mkdir -p /usr/local/var/www/error-pages
+$ cd Webserver-Error-Pages/
 $ cp -R dist/apache/ /usr/local/var/www/error-pages
 $ chown -R www:apache /usr/local/var/www/error-pages # see note below.
 ```
@@ -102,13 +96,13 @@ $ chown -R www:apache /usr/local/var/www/error-pages # see note below.
 
 Check to see if you have all the required files.
 
-```bash
+```console
 $ ls -lh /usr/local/var/www/error-pages
 ```
 
 Make sure that you have the following file structure below.
 
-```terminal
+```text
 /usr/local/var/www/error-pages
 ├── 400.html
 ├── 401.html
@@ -182,7 +176,7 @@ Make sure that you have the following file structure below.
 
 ### Additional Server Support
 
-In addition to the above Apache 2 error pages there is also support for additional webservers. You can find production-ready, minified template files for the following webservers:
+In addition to the above Apache error pages there is also support for additional webservers. You can find production-ready, minified template files for the following webservers:
 
 * Nginx files located at `dist/nginx/`
 * Microsoft IIS files located at `dist/ms-iis/`
@@ -196,21 +190,21 @@ Once you have your files in the right location you can now edit either your `apa
 
 You can find the location to your file with the following.
 
-```bash
+```console
 $ locate httpd.conf
 /usr/local/etc/httpd/httpd.conf
 ```
 
 If your system returns nothing, run:
 
-```bash
+```console
 $ locate apache.conf
 /usr/local/etc/apache/apache.conf
 ```
 
 Open the file with your favourite editor.
 
-```bash
+```console
 $ sudo nano /usr/local/etc/httpd/httpd.conf
 ```
 
@@ -219,8 +213,8 @@ Scroll down until you find the following section in your conf file.
 ```apache
 <IfModule alias_module>
     #
-    # Redirect: Allows you to tell clients about documents that used to 
-    # exist in your server's namespace, but do not anymore. The client 
+    # Redirect: Allows you to tell clients about documents that used to
+    # exist in your server's namespace, but do not anymore. The client
     # will make a new request for the document at its new location.
     # Example:
     # Redirect permanent /foo http://www.example.com/bar
@@ -234,12 +228,12 @@ Add the following to this section.
 ```apache
 <IfModule alias_module>
     #
-    # Redirect: Allows you to tell clients about documents that used to 
-    # exist in your server's namespace, but do not anymore. The client 
+    # Redirect: Allows you to tell clients about documents that used to
+    # exist in your server's namespace, but do not anymore. The client
     # will make a new request for the document at its new location.
     # Example:
     # Redirect permanent /foo http://www.example.com/bar
-    
+
     #
     # Error Pages Alias
     #
@@ -264,7 +258,7 @@ Now, scroll down further until you get to this section.
 #
 ```
 
-Comment any `ErrorDocument` directives (e.g. `#ErrorDocument`) and then add your new directives so that your file now looks as follows:
+Comment out any `ErrorDocument` directives (i.e. it should look like `#ErrorDocument`) and then add your new directives so that your file looks similar to this:
 
 ```apache
 #
@@ -319,7 +313,7 @@ ErrorDocument 511 /ErrorPages/511.html
 
 Save your file and then test your configuration changes by executing the following.
 
-```bash
+```console
 $ sudo apachectl configtest
 ```
 
@@ -327,7 +321,7 @@ If you get any message other than `Syntax OK` then you've done something wrong. 
 
 The final step is to restart Apache so that it loads your new error pages.
 
-```bash
+```console
 $ sudo apachectl restart
 ```
 
@@ -339,14 +333,14 @@ There is a `bash` script, found at [/src/scripts/minify][script] which runs the 
 
 ### Dependencies
 
-You will need to install, `html-minifier`, `postcss` (and plugins) and `uglify-js` before you can execute the minifaction script. You can do this by following the commands below or by using the `package.json` file located at the root folder of the project repo. Either way, you will need to install `html-minifier` before using `Node` to get the required modules.
+You will need to install, `html-minifier`, `postcss` (with plugins), and `uglify-js` before you can execute the minifaction script. You can do this by following the commands below.
 
 #### Installing html-minifier
 
-The best way to install `html-minifier` is by running the following commands in the project root folder.
+The best way to install `html-minifier` is by running the following commands in the project root folder. _(it is important to note that Node (which provides `npm`) needs to be installed for this to work)_.
 
-```bash
-$ cd Apache-Error-Pages/
+```console
+$ cd Webserver-Error-Pages/
 $ git clone git://github.com/kangax/html-minifier.git
 $ cd html-minifier
 $ npm link .
@@ -354,39 +348,21 @@ $ npm link .
 
 #### Using Node to install the packages
 
-As of version `v1.1.0` there is now a `package.json` file contained at the root of this project folder. This file contains all the dependencies required to execute the `./scripts/minify` script. You can run the following commands and it will install `postcss`, along with various plugins, as well as `uglify-js` which is used by `html-minifier`.
+As of version `v1.1.0` there is now a `package.json` file contained at the root of this project folder. This file contains all the dependencies required to execute the `./src/scripts/minify` script. You can run the following commands and it will install `postcss`, along with various plugins, as well as `uglify-js` which is used by `html-minifier`.
 
-```bash
+```console
 $ npm install
 ```
 
-You will now have a new `/node_modules/` folder and you should be good to go to execute `./scripts/minify`. You can ignore `Installing postcss` and `Installing uglify-js`, in the steps below, as you will have these installed already.
-
-#### Installing postcss
-
-Once `html-minifier` is installed you can install `postcss` as follows.
-
-```bash
-$ npm install postcss-import css-mqpacker cssnano@next postcss-cli --save-dev
-```
-
-#### Installing uglify-js
-
-While the `minify` script doesn't directly use `uglify-js` by way of any direct commands; it is required for the JavaScript compression when executing `html-minifier`. You can install `uglify-js` with the following.
-
-```bash
-$ npm install uglify-js --save-dev
-```
+You will now have a new `/node_modules/` folder and you should be good to go to execute `./src/scripts/minify`. You can ignore `Installing postcss` and `Installing uglify-js`, in the steps below, as you will have these installed already.
 
 ### Running the minify script
 
 You can run the script with this command:
 
-```bash
+```console
 $ cd src/
 $ ./scripts/minify
-
-# expected output when executing `minify`:
 The ../dist/apache folder has been reset.
 400.html minified
 401.html minified
@@ -445,12 +421,10 @@ There are no options for running this script. Executing this command will:
 ##### Nginx
 
 There are additional templates which are used only by `nginx`. These templates are included in the `dist/nginx/` folder and the script below will minify the files for this folder.
- 
-```bash
+
+```console
 $ cd src/
 $ ./scripts/minify_nginx
-
-# expected output when executing `minify_nginx`:
 The ../dist/nginx folder has been reset.
 444.html minified
 494.html minified
@@ -466,12 +440,10 @@ Minification Complete!
 ##### Microsoft IIS
 
 There are additional templates which are used only by Microsoft Internet Information Services. These templates are included in the `dist/ms-iis/` folder and the script below will minify the files for this folder.
- 
-```bash
+
+```console
 $ cd src/
 $ ./scripts/minify_iis
-
-# expected output when executing `minify_iis`:
 The ../dist/ms-iis folder has been reset.
 440.html minified
 449.html minified
@@ -484,12 +456,10 @@ Minification Complete!
 ##### Other
 
 There are additional templates which are used only by other webservers. These templates are included in the `dist/other/` folder and the script below will minify the files for this folder.
- 
-```bash
+
+```console
 $ cd src/
 $ ./scripts/minify_other
-
-# expected output when executing `minify_other`:
 The ../dist/other folder has been reset.
 420.html minified
 520.html minified
@@ -530,7 +500,7 @@ Also see the list of [contributors][contribs] who have participated in this proj
 This work is licensed under the [GNU Affero General Public License][agpl]. You can view the full LICENSE by [reading this][license] file.
 
 ```text
-Copyright (C) 2018 Justin Hartman <justin@hartman.me> (https://justin.hartman.me).
+Copyright 2018-2020 Justin Hartman <justin@hartman.me> (https://hartman.me)
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU Affero General Public License as
@@ -575,7 +545,7 @@ Thanks go out to the following for the inspiration, images, icons and, in some c
 [site]: https://justin.hartman.me
 [email]: mailto:justin@hartman.me?subject=Github+Contact
 [license]: LICENSE
-[404-template]: https://ws2.sinaimg.cn/large/006tKfTcly1fr3klp9lp9g30hs0a1gyv.gif
+[404-template]: src/docs/preview.gif
 [CONTRIBUTING]: CONTRIBUTING.md
 [COC]: CODE_OF_CONDUCT.md
 [changelog]: CHANGELOG.md
@@ -586,7 +556,6 @@ Thanks go out to the following for the inspiration, images, icons and, in some c
 [author-1]: https://github.com/justinhartman
 [.github]: https://github.com/justinhartman/.github
 [script]: src/scripts/minify
-[preview1]: https://ws3.sinaimg.cn/large/006tNc79gy1frbf2aw0v9j31kw0zk3zu.jpg
-[preview2]: https://ws3.sinaimg.cn/large/006tKfTcly1fraeyka1y6j31kw16o75d.jpg
-[preview3]: https://ws4.sinaimg.cn/large/006tKfTcly1fraeyf9bhzj30ku112gma.jpg
-[preview4]: https://ws4.sinaimg.cn/large/006tKfTcly1fraeye5bydj308w0dcdfw.jpg
+[preview1]: src/docs/desktop.png
+[preview2]: src/docs/tablet.png
+[preview3]: src/docs/mobile.png
